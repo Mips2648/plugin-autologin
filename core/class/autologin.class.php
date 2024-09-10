@@ -22,12 +22,14 @@
 //error_reporting(E_ALL);
 //ini_set('display_errors', 'On');
 class autologin extends eqLogic {
-    /*     * *************************Attributs****************************** */
+    public function preInsert() {
+        $this->setCategory('security', 1);
+        $this->setConfiguration('redirecturl', 'index.php');
+        $this->setConfiguration('ip', getClientIp());
+        $this->setConfiguration('sessionid', uniqid());
 
-    /*     * ***********************Methode static*************************** */
-
-
-    /*     * *********************Methode d'instance************************* */
+        $this->setIsEnable(1);
+    }
 
     public function preUpdate() {
 
@@ -52,13 +54,6 @@ class autologin extends eqLogic {
             throw new Exception(__('Le champs Utilisateur ne peut etre vide.', __FILE__));
         }
 
-        if ($this->getLogicalId() == '') {
-            $this->setLogicalId($this->getId());
-            $this->setConfiguration('sessionid', uniqid());
-        }
-        // necessary to show url in config UI
-        $this->setConfiguration('urlid', $this->getLogicalId());
-
         if ($this->getIsEnable() == 0) {
             $this->deleteHash();
         } else {
@@ -68,22 +63,6 @@ class autologin extends eqLogic {
 
     public function preRemove() {
         $this->deleteHash();
-    }
-
-    public function preSave() {
-        // first time only
-        if ($this->getLogicalId() == '') {
-            if ($this->getConfiguration('redirecturl', '') == '') {
-                $this->setConfiguration('redirecturl', 'index.php');
-            }
-            if ($this->getConfiguration('ip', '') == '') {
-                $this->setConfiguration('ip', getClientIp());
-            }
-            $this->setIsEnable(1);
-        }
-    }
-
-    public function postSave() {
     }
 
     public function saveHash() {

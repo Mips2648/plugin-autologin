@@ -31,8 +31,8 @@ if (isset($queryparam['id'])) {
     $ip = getClientIp();
 
     /** @var autologin */
-    $autologin = autologin::byLogicalId($queryparam['id'], 'autologin');
-    if (!is_object($autologin)) {
+    $autologin = autologin::byId($queryparam['id']);
+    if (!is_object($autologin) || $autologin->getEqType_name() != 'autologin') {
         echo getErrorHTML("ID does not exist.");
         log::add('autologin', 'error', __('ID does not exist or is truncated. ', __FILE__) . '(id received: ' . $queryparam['id'] . ')');
         die();

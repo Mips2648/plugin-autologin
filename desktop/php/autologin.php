@@ -11,136 +11,169 @@ function sortByOption($a, $b) {
 }
 
 ?>
+<style>
+  div.autologin span.masked {
+    font-family: "text-security-disc" !important;
+  }
+</style>
 <div class="row row-overflow">
-  <div class="col-lg-2">
-    <div class="bs-sidebar">
-      <ul id="ul_eqLogic" class="nav nav-list bs-sidenav">
-        <a class="btn btn-default eqLogicAction" style="width:100%;margin-top : 5px;margin-bottom: 5px;" data-action="add"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
-        <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%" /></li>
-        <?php
-        foreach ($eqLogics as $eqLogic) {
-          echo '<li class="cursor li_eqLogic" data-eqLogic_id="' . $eqLogic->getId() . '"><a>' . $eqLogic->getHumanName(true) . '</a></li>';
-        }
-        ?>
-      </ul>
-    </div>
-  </div>
-  <div class="col-lg-10 col-md-9 col-sm-8 eqLogicThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
-    <legend><i class="fa fa-cog"></i>&nbsp; &nbsp;{{Gestion}}</legend>
+
+  <div class="col-xs-12 eqLogicThumbnailDisplay">
+    <legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
+    <!-- Boutons de gestion du plugin -->
     <div class="eqLogicThumbnailContainer">
-      <div class="cursor eqLogicAction" data-action="add" style="text-align: center; background-color : #ffffff; margin-bottom : 5px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;">
-        <i class="fa fa-plus-circle" style="font-size : 5em;color:#94ca02;"></i>
+      <div class="cursor eqLogicAction logoPrimary" data-action="add">
+        <i class="fas fa-plus-circle"></i>
         <br>
-        <span style="font-size : 1.2em;position:relative; top : 5px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02">{{Ajouter}}</span>
+        <span>{{Ajouter}}</span>
+      </div>
+      <div class="cursor eqLogicAction logoSecondary" data-action="gotoPluginConf">
+        <i class="fas fa-wrench"></i>
+        <br>
+        <span>{{Configuration}}</span>
       </div>
     </div>
-    <br>
-    <legend><i class="icon techno-cable1"></i>&nbsp; &nbsp;{{Mes sessions AutoLogin}}</legend>
-    <div class="eqLogicThumbnailContainer">
-      <?php
+    <legend><i class="fas fa-table"></i> {{Mes AutoLogin}}</legend>
+    <?php
+    if (count($eqLogics) == 0) {
+      echo '<br><div class="text-center" style="font-size:1.2em;font-weight:bold;">{{Aucun équipement trouvé, cliquer sur "Ajouter" pour commencer}}</div>';
+    } else {
+      // Champ de recherche
+      echo '<div class="input-group" style="margin:5px;">';
+      echo '<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchEqlogic">';
+      echo '<div class="input-group-btn">';
+      echo '<a id="bt_resetSearch" class="btn" style="width:30px"><i class="fas fa-times"></i></a>';
+      echo '<a class="btn roundedRight hidden" id="bt_pluginDisplayAsTable" data-coreSupport="1" data-state="0"><i class="fas fa-grip-lines"></i></a>';
+      echo '</div>';
+      echo '</div>';
+      // Liste des équipements du plugin
+      echo '<div class="eqLogicThumbnailContainer">';
       foreach ($eqLogics as $eqLogic) {
-        $opacity = '';
-        if ($eqLogic->getIsEnable() != 1) {
-          $opacity = 'opacity:0.3;';
-        }
-        echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="text-align: center; background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
-        echo '<img src="' . $eqLogic->getConfiguration('logodir', 'plugins/autologin/desktop/images/thumb.png') . '" height="95" width="95" />';
-        echo "<br>";
-        echo '<span style="font-size : 1.1em;position:relative; top : 3px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $eqLogic->getHumanName(true, true) . '</span>';
+        $opacity = ($eqLogic->getIsEnable()) ? '' : 'disableCard';
+        echo '<div class="eqLogicDisplayCard cursor ' . $opacity . '" data-eqLogic_id="' . $eqLogic->getId() . '">';
+        echo '<img src="' . $eqLogic->getImage() . '"/>';
+        echo '<br>';
+        echo '<span class="name">' . $eqLogic->getHumanName(true, true) . '</span>';
+        echo '<span class="hiddenAsCard displayTableRight hidden">';
+        echo ($eqLogic->getIsVisible() == 1) ? '<i class="fas fa-eye" title="{{Equipement visible}}"></i>' : '<i class="fas fa-eye-slash" title="{{Equipement non visible}}"></i>';
+        echo '</span>';
         echo '</div>';
       }
-      ?>
-    </div>
+      echo '</div>';
+    }
+    ?>
   </div>
-  <div class="col-lg-10 eqLogic" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
-    <a class="btn btn-success eqLogicAction pull-right" data-action="save"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
-    <a class="btn btn-danger eqLogicAction pull-right" data-action="remove"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+
+  <div class="col-xs-12 eqLogic" style="display: none;">
+    <div class="input-group pull-right" style="display:inline-flex;">
+      <span class="input-group-btn">
+        <!-- Les balises <a></a> sont volontairement fermées à la ligne suivante pour éviter les espaces entre les boutons. Ne pas modifier -->
+        <a class="btn btn-sm btn-default eqLogicAction roundedLeft" data-action="configure"><i class="fas fa-cogs"></i><span class="hidden-xs"> {{Configuration avancée}}</span>
+        </a><a class="btn btn-sm btn-default eqLogicAction" data-action="copy"><i class="fas fa-copy"></i><span class="hidden-xs"> {{Dupliquer}}</span>
+        </a><a class="btn btn-sm btn-success eqLogicAction" data-action="save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
+        </a><a class="btn btn-sm btn-danger eqLogicAction roundedRight" data-action="remove"><i class="fas fa-minus-circle"></i> {{Supprimer}}
+        </a>
+      </span>
+    </div>
     <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation"><a href="#" class="eqLogicAction" aria-controls="home" role="tab" data-toggle="tab" data-action="returnToThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
-      <li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Session}}</a></li>
+      <li role="presentation"><a href="#" class="eqLogicAction" aria-controls="home" role="tab" data-toggle="tab" data-action="returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
+      <li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Equipement}}</a></li>
     </ul>
-    <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
+    <div class="tab-content">
+      <!-- Onglet de configuration de l'équipement -->
       <div role="tabpanel" class="tab-pane active" id="eqlogictab">
-        <br />
         <form class="form-horizontal">
           <fieldset>
-            <div class="form-group">
-              <label class="col-lg-3 control-label">{{Nom de l'équipement}}</label>
-              <div class="col-lg-4">
-                <input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;" />
-                <input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement}}" />
+            <div class="col-lg-6">
+              <legend><i class="fas fa-wrench"></i> {{Paramètres généraux}}</legend>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">{{Nom de l'équipement}}</label>
+                <div class="col-sm-4">
+                  <input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display:none;">
+                  <input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement}}">
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label class="col-lg-3 control-label">{{Objet parent}}</label>
-              <div class="col-lg-4">
-                <select id="sel_object" class="eqLogicAttr form-control" data-l1key="object_id">
-                  <option value="">{{Aucun}}</option>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">{{Objet parent}}</label>
+                <div class="col-sm-4">
+                  <select id="sel_object" class="eqLogicAttr form-control" data-l1key="object_id">
+                    <option value="">{{Aucun}}</option>
+                    <?php
+                    $options = '';
+                    foreach ((jeeObject::buildTree(null, false)) as $object) {
+                      $options .= '<option value="' . $object->getId() . '">' . str_repeat('&nbsp;&nbsp;', $object->getConfiguration('parentNumber')) . $object->getName() . '</option>';
+                    }
+                    echo $options;
+                    ?>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">{{Catégorie}}</label>
+                <div class="col-sm-8">
                   <?php
-                  foreach (jeeObject::all() as $object) {
-                    echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
+                  foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
+                    echo '<label class="checkbox-inline">';
+                    echo '<input type="checkbox" class="eqLogicAttr" data-l1key="category" data-l2key="' . $key . '" >' . $value['name'];
+                    echo '</label>';
                   }
                   ?>
-                </select>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label class="col-lg-3 control-label">{{Catégorie}}</label>
-              <div class="col-lg-9">
-                <?php
-                foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
-                  echo '<label class="checkbox-inline">';
-                  echo '<input type="checkbox" class="eqLogicAttr" data-l1key="category" data-l2key="' . $key . '" />' . $value['name'];
-                  echo '</label>';
-                }
-                ?>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">{{Options}}</label>
+                <div class="col-sm-4">
+                  <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked>{{Activer}}</label>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label"></label>
-              <div class="col-sm-9">
-                <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked />{{Activer}}</label>
-                <!--<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>-->
+
+              <legend><i class="fas fa-cogs"></i> {{Paramètres spécifiques}}</legend>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">{{IP Autorisée}}</label>
+                <div class="col-sm-4">
+                  <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="ip" placeholder="{{eg: 192.168.X.Y}}" />
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label class="col-lg-3 control-label">{{IP Autorisée}}</label>
-              <div class="col-lg-4">
-                <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="ip" placeholder="{{eg: 192.168.X.Y}}" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-lg-3 control-label">{{Utilisateur}}</label>
-              <div class="col-lg-4">
-                <select id="select_gcastplayer" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="user">
-                  <option value="">{{Selectionner un utilisateur (non admin)}}</option>
-                  <?php
-                  if ($eqLogic) {
-                    foreach (user::byEnable(true) as $user) {
-                      if ($user->getProfils() != 'admin') {
-                        echo '<option value="' . $user->getLogin() . '">' . $user->getLogin() . '</option>';
+              <div class="form-group">
+                <label class="col-sm-4 control-label">{{Utilisateur}}</label>
+                <div class="col-sm-4">
+                  <select id="select_gcastplayer" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="user">
+                    <option value="">{{Selectionner un utilisateur (non admin)}}</option>
+                    <?php
+                    if ($eqLogic) {
+                      foreach (user::byEnable(true) as $user) {
+                        if ($user->getProfils() != 'admin') {
+                          echo '<option value="' . $user->getLogin() . '">' . $user->getLogin() . '</option>';
+                        }
                       }
                     }
-                  }
-                  ?>
-                </select>
+                    ?>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">{{Page Jeedom}}</label>
+                <div class="col-sm-8">
+                  <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="redirecturl" placeholder="eg : index.php" />
+                </div>
               </div>
             </div>
-            <div class="form-group">
-              <label class="col-lg-3 control-label">{{Page Jeedom}}</label>
-              <div class="col-lg-4">
-                <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="redirecturl" placeholder="eg : index.php" />
+            <div class="col-lg-6">
+              <legend><i class="fas fa-at"></i> {{URL à appeler}}</legend>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">{{Accès interne}}</label>
+                <div class="alert alert-info col-sm-10 autologin">
+                  <a class="btn btn-default btn-xs maskToggle pull-right"><i class="fas fa-eye"></i></a>
+                  <?php echo '<span class="mask masked">' . network::getNetworkAccess('internal') . '</span>/plugins/autologin/core/php/go.php?apikey=<span class="mask masked">' . jeedom::getApiKey('autologin') . '</span>&id=<span class="eqLogicAttr" data-l1key="id"/>'; ?></span>
+                </div>
+                <label class="col-sm-2 control-label">{{Accès externe}}</label>
+                <div class="alert alert-info col-sm-10 autologin">
+                  <a class="btn btn-default btn-xs maskToggle pull-right"><i class="fas fa-eye"></i></a>
+                  <?php echo '<span class="mask masked">' . network::getNetworkAccess('external') . '</span>/plugins/autologin/core/php/go.php?apikey=<span class="mask masked">' . jeedom::getApiKey('autologin') . '</span>&id=<span class="eqLogicAttr" data-l1key="id"/>'; ?></span>
+                </div>
               </div>
             </div>
-            <div class="form-group">
-              <label class="col-lg-3 control-label">{{URL à appeler}}</label>
-              <div class="alert alert-info col-lg-6">
-                <span><b>{{Accès interne}}</b><br>
-                  <?php echo network::getNetworkAccess('internal') . '/plugins/autologin/core/php/go.php?apikey%3D' . jeedom::getApiKey('autologin') . '&id%3D<span class="eqLogicAttr" data-l1key="configuration" data-l2key="urlid"/>'; ?></span>
-                <span><br><br><b>{{Accès externe}}</b><br>
-                  <?php echo network::getNetworkAccess('external') . '/plugins/autologin/core/php/go.php?apikey%3D' . jeedom::getApiKey('autologin') . '&id%3D<span class="eqLogicAttr" data-l1key="configuration" data-l2key="urlid"/>'; ?></span>
-              </div>
-            </div>
+
           </fieldset>
         </form>
       </div>
@@ -149,4 +182,7 @@ function sortByOption($a, $b) {
   </div>
 </div>
 
-<?php include_file('core', 'plugin.template', 'js'); ?>
+<?php
+include_file('desktop', 'autologin', 'js', 'autologin');
+include_file('core', 'plugin.template', 'js');
+?>
