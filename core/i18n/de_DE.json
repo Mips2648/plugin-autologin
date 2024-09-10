@@ -1,0 +1,41 @@
+{
+    "plugins\/autologin\/core\/class\/autologin.class.php": {
+        "Le champs IP n\\'est pas au bon format.": "Das IP-Feld ist nicht im richtigen Format.",
+        "Le champs IP ne peut etre vide.": "Das IP-Feld darf nicht leer sein.",
+        "Le champs Redirect URL n\\'est pas au bon format.": "Das Feld Redirect URL ist nicht im richtigen Format.",
+        "Le champs Utilisateur ne peut etre vide.": "Das Feld Benutzer darf nicht leer sein."
+    },
+    "plugins\/autologin\/core\/php\/go.php": {
+        "Authentification en cours...": "Authentifizierung wird durchgeführt...",
+        "Connexion de l\\'utilisateur ": "Einloggen des Benutzers",
+        "ID does not exist or is truncated. ": "ID existiert nicht oder ist abgeschnitten.",
+        "This IP is not allowed ": "This IP is not allowed",
+        "This autologin session has been disabled.": "Diese Autologin-Sitzung wurde deaktiviert.",
+        "User accept only local connection.": "Benutzer akzeptieren nur lokale Verbindung.",
+        "User does not exist or is disabled.": "Benutzer existiert nicht oder ist deaktiviert."
+    },
+    "plugins\/autologin\/desktop\/php\/autologin.php": {
+        "401 - Accès non autorisé": "401 - Unberechtigter Zugriff",
+        "Accès externe": "Externer Zugriff",
+        "Accès interne": "Interner Zugriff",
+        "Activer": "Aktivieren",
+        "Ajouter": "Hinzufügen",
+        "Aucun": "Keine",
+        "Catégorie": "Kategorie",
+        "Gestion": "Verwaltung",
+        "IP Autorisée": "Autorisierte IP",
+        "Mes sessions AutoLogin": "Meine AutoLogin-Sitzungen",
+        "Nom de l'équipement": "Name des Geräts",
+        "Objet parent": "Übergeordnetes Objekt",
+        "Page Jeedom": "Jeedom-Seite",
+        "Rechercher": "Suche",
+        "Sauvegarder": "Speichern",
+        "Selectionner un utilisateur (non admin)": "Benutzer auswählen (nicht admin)",
+        "Session": "Sitzung",
+        "Supprimer": "Löschen",
+        "URL à appeler": "Aufzurufende URL",
+        "Utilisateur": "Benutzer",
+        "Visible": "Sichtbar",
+        "eg: 192.168.X.Y": "eg: 192.168.X.Y"
+    }
+}

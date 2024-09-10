@@ -1,0 +1,41 @@
+{
+    "plugins\/autologin\/core\/class\/autologin.class.php": {
+        "Le champs IP n\\'est pas au bon format.": "El campo IP tiene un formato incorrecto.",
+        "Le champs IP ne peut etre vide.": "El campo IP no puede estar vacío.",
+        "Le champs Redirect URL n\\'est pas au bon format.": "El campo URL de redirección tiene un formato incorrecto.",
+        "Le champs Utilisateur ne peut etre vide.": "El campo Usuario no puede estar vacío."
+    },
+    "plugins\/autologin\/core\/php\/go.php": {
+        "Authentification en cours...": "Autenticación en curso...",
+        "Connexion de l\\'utilisateur ": "Inicio de sesión de usuario",
+        "ID does not exist or is truncated. ": "El ID no existe o está truncado.",
+        "This IP is not allowed ": "Esta IP no está permitida",
+        "This autologin session has been disabled.": "Esta sesión autologin ha sido desactivada.",
+        "User accept only local connection.": "El usuario sólo acepta la conexión local.",
+        "User does not exist or is disabled.": "El usuario no existe o está desactivado."
+    },
+    "plugins\/autologin\/desktop\/php\/autologin.php": {
+        "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Accès externe": "Acceso exterior",
+        "Accès interne": "Acceso interno",
+        "Activer": "Activar",
+        "Ajouter": "Añada",
+        "Aucun": "No",
+        "Catégorie": "Categoría",
+        "Gestion": "Gestión",
+        "IP Autorisée": "IP autorizada",
+        "Mes sessions AutoLogin": "Mis sesiones AutoLogin",
+        "Nom de l'équipement": "Nombre del equipo",
+        "Objet parent": "Objeto principal",
+        "Page Jeedom": "Página de Jeedom",
+        "Rechercher": "Buscar en",
+        "Sauvegarder": "Guardar",
+        "Selectionner un utilisateur (non admin)": "Seleccionar un usuario (no administrador)",
+        "Session": "Sesión",
+        "Supprimer": "Borrar",
+        "URL à appeler": "URL para llamar",
+        "Utilisateur": "Usuario",
+        "Visible": "Visible",
+        "eg: 192.168.X.Y": "por ejemplo: 192.168.X.Y"
+    }
+}

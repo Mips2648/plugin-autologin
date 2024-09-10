@@ -1,0 +1,41 @@
+{
+    "plugins\/autologin\/core\/class\/autologin.class.php": {
+        "Le champs IP n\\'est pas au bon format.": "O campo IP está num formato incorreto.",
+        "Le champs IP ne peut etre vide.": "O campo IP não pode estar vazio.",
+        "Le champs Redirect URL n\\'est pas au bon format.": "O campo URL de redireccionamento está no formato errado.",
+        "Le champs Utilisateur ne peut etre vide.": "O campo Utilizador não pode estar vazio."
+    },
+    "plugins\/autologin\/core\/php\/go.php": {
+        "Authentification en cours...": "Autenticação em curso...",
+        "Connexion de l\\'utilisateur ": "Início de sessão do utilizador",
+        "ID does not exist or is truncated. ": "O ID não existe ou está truncado.",
+        "This IP is not allowed ": "Este IP não é permitido",
+        "This autologin session has been disabled.": "Esta sessão de início automático de sessão foi desactivada.",
+        "User accept only local connection.": "O utilizador só aceita a ligação local.",
+        "User does not exist or is disabled.": "O utilizador não existe ou está desativado."
+    },
+    "plugins\/autologin\/desktop\/php\/autologin.php": {
+        "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "Accès externe": "Acesso externo",
+        "Accès interne": "Acesso interno",
+        "Activer": "Ativar",
+        "Ajouter": "Adicionar",
+        "Aucun": "Não",
+        "Catégorie": "Categoria",
+        "Gestion": "Gestão",
+        "IP Autorisée": "IP autorizado",
+        "Mes sessions AutoLogin": "As minhas sessões AutoLogin",
+        "Nom de l'équipement": "Nome do equipamento",
+        "Objet parent": "Objeto principal",
+        "Page Jeedom": "Página do Jeedom",
+        "Rechercher": "Pesquisar",
+        "Sauvegarder": "Guardar",
+        "Selectionner un utilisateur (non admin)": "Selecionar um utilizador (não administrador)",
+        "Session": "Sessão",
+        "Supprimer": "Eliminar",
+        "URL à appeler": "URL para chamar",
+        "Utilisateur": "Utilizador",
+        "Visible": "Visível",
+        "eg: 192.168.X.Y": "por exemplo: 192.168.X.Y"
+    }
+}

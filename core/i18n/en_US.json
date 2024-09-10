@@ -1,27 +1,41 @@
 {
-    "plugins\/autologin\/desktop\/php\/autologin.php": {
-        "Ajouter": "Add",
-        "Rechercher": "Search",
-        "Gestion": "Manage",
-        "Mes sessions AutoLogin": "My Autologin sessions",
-        "Sauvegarder": "Save",
-        "Supprimer": "Delete",
-        "Session": "Session",
-        "Nom de l'équipement": "Equipment name",
-        "Objet parent": "Parent Object",
-        "Aucun": "None",
-        "Catégorie": "Category",
-        "Activer": "Enable",
-        "Visible": "Visible",
-        "IP Autorisée": "Allowed IP",
-        "Utilisateur": "User",
-        "Selectionner un utilisateur (non admin)": "Select a non-admin user",
-        "Page Jeedom": "Jeedom page",
-        "URL à appeler": "URL to be called",
-        "Accès interne": "Internal access",
-        "Accès externe": "External access"
+    "plugins\/autologin\/core\/class\/autologin.class.php": {
+        "Le champs IP n\\'est pas au bon format.": "The IP field is not in the correct format.",
+        "Le champs IP ne peut etre vide.": "The IP field cannot be empty.",
+        "Le champs Redirect URL n\\'est pas au bon format.": "The Redirect URL field is in the wrong format.",
+        "Le champs Utilisateur ne peut etre vide.": "User fields cannot be empty."
     },
     "plugins\/autologin\/core\/php\/go.php": {
-        "Authentification en cours...": "Loading..."
+        "Authentification en cours...": "Loading...",
+        "Connexion de l\\'utilisateur ": "User login",
+        "ID does not exist or is truncated. ": "ID does not exist or is truncated.",
+        "This IP is not allowed ": "This IP is not allowed",
+        "This autologin session has been disabled.": "This autologin session has been disabled.",
+        "User accept only local connection.": "User accept only local connection.",
+        "User does not exist or is disabled.": "User does not exist or is disabled."
+    },
+    "plugins\/autologin\/desktop\/php\/autologin.php": {
+        "401 - Accès non autorisé": "401 - Unauthorized access",
+        "Accès externe": "External access",
+        "Accès interne": "Internal access",
+        "Activer": "Enable",
+        "Ajouter": "Add",
+        "Aucun": "None",
+        "Catégorie": "Category",
+        "Gestion": "Manage",
+        "IP Autorisée": "Allowed IP",
+        "Mes sessions AutoLogin": "My Autologin sessions",
+        "Nom de l'équipement": "Equipment name",
+        "Objet parent": "Parent Object",
+        "Page Jeedom": "Jeedom page",
+        "Rechercher": "Search",
+        "Sauvegarder": "Save",
+        "Selectionner un utilisateur (non admin)": "Select a non-admin user",
+        "Session": "Session",
+        "Supprimer": "Delete",
+        "URL à appeler": "URL to be called",
+        "Utilisateur": "User",
+        "Visible": "Visible",
+        "eg: 192.168.X.Y": "eg: 192.168.X.Y"
     }
 }
