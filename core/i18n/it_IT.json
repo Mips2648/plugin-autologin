@@ -1,0 +1,49 @@
+{
+    "plugins\/autologin\/core\/class\/autologin.class.php": {
+        "Le champs IP n\\'est pas au bon format.": "Il campo IP è nel formato sbagliato.",
+        "Le champs IP ne peut etre vide.": "Il campo IP non può essere vuoto.",
+        "Le champs Redirect URL n\\'est pas au bon format.": "Il campo URL di reindirizzamento è nel formato sbagliato.",
+        "Le champs Utilisateur ne peut etre vide.": "Il campo Utente non può essere vuoto."
+    },
+    "plugins\/autologin\/core\/php\/go.php": {
+        "Authentification en cours...": "Autenticazione in corso...",
+        "Connexion de l\\'utilisateur ": "Accesso utente",
+        "ID does not exist or is truncated. ": "L'ID non esiste o è troncato.",
+        "This IP is not allowed ": "Questo IP non è consentito",
+        "This autologin session has been disabled.": "Questa sessione di autologin è stata disabilitata.",
+        "User accept only local connection.": "L'utente accetta solo la connessione locale.",
+        "User does not exist or is disabled.": "L'utente non esiste o è disattivato."
+    },
+    "plugins\/autologin\/desktop\/php\/autologin.php": {
+        "401 - Accès non autorisé": "401 - Accesso non autorizzato",
+        "Accès externe": "Accesso esterno",
+        "Accès interne": "Accesso interno",
+        "Activer": "Attivare",
+        "Ajouter": "Aggiungi",
+        "Aucun": "No",
+        "Aucun équipement trouvé, cliquer sur \"Ajouter\" pour commencer": "Nessuna apparecchiatura trovata, fare clic su \"Aggiungi\" per iniziare",
+        "Catégorie": "Categoria",
+        "Configuration": "Configurazione",
+        "Configuration avancée": "Configurazione avanzata",
+        "Dupliquer": "Duplicato",
+        "Equipement": "Apparecchiature",
+        "Equipement non visible": "Apparecchiature non visibili",
+        "Equipement visible": "Apparecchiature visibili",
+        "Gestion": "Gestione",
+        "IP Autorisée": "IP Autorizzato",
+        "Mes AutoLogin": "Il mio AutoLogin",
+        "Nom de l'équipement": "Nome dell'apparecchiatura",
+        "Objet parent": "Oggetto genitore",
+        "Options": "Opzioni",
+        "Page Jeedom": "Pagina Jeedom",
+        "Paramètres généraux": "Parametri generali",
+        "Paramètres spécifiques": "Parametri specifici",
+        "Rechercher": "Ricerca",
+        "Sauvegarder": "Risparmiare",
+        "Selectionner un utilisateur (non admin)": "Selezionare un utente (non amministratore)",
+        "Supprimer": "Cancellare",
+        "URL à appeler": "URL da chiamare",
+        "Utilisateur": "Utente",
+        "eg: 192.168.X.Y": "es: 192.168.X.Y"
+    }
+}

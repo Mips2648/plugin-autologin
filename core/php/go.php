@@ -30,8 +30,9 @@ if (!isset($queryparam['apikey']) || !jeedom::apiAccess($queryparam['apikey'], '
 if (isset($queryparam['id'])) {
     $ip = getClientIp();
 
-    $autologin = autologin::byLogicalId($queryparam['id'], 'autologin');
-    if (!is_object($autologin)) {
+    /** @var autologin */
+    $autologin = autologin::byId($queryparam['id']);
+    if (!is_object($autologin) || $autologin->getEqType_name() != 'autologin') {
         echo getErrorHTML("ID does not exist.");
         log::add('autologin', 'error', __('ID does not exist or is truncated. ', __FILE__) . '(id received: ' . $queryparam['id'] . ')');
         die();
@@ -43,18 +44,18 @@ if (isset($queryparam['id'])) {
     }
 
     $scheme = 'http';
-    if(isset($_SERVER['HTTP_X_FORWARDED_PROTO'])){
+    if (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
         $scheme = $_SERVER['HTTP_X_FORWARDED_PROTO'];
-    }elseif (isset($_SERVER['HTTPS']) && 'on' === $_SERVER['HTTPS']) {
+    } elseif (isset($_SERVER['HTTPS']) && 'on' === $_SERVER['HTTPS']) {
         $scheme = 'https';
     }
 
     $host = $_SERVER['HTTP_HOST'];
-    if(isset($_SERVER['HTTP_X_FORWARDED_HOST'])){
+    if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
         $host = $_SERVER['HTTP_X_FORWARDED_HOST'];
-    } 
+    }
 
-    $url = $scheme . '://' . $host . '/' .$autologin->getRedirectUrl();
+    $url = $scheme . '://' . $host . '/' . $autologin->getRedirectUrl();
     $allowedIP = $autologin->getIP();
     $user = $autologin->getUser();
     $hashRegisteredDevice = $autologin->getHash();
@@ -107,7 +108,7 @@ if (isset($queryparam['id'])) {
     log::add('autologin', 'info', __('Connexion de l\'utilisateur ', __FILE__) . $user->getLogin() . " ($ip)");
 
     // if session already ok
-    if (isset($_COOKIE['sess_id'])==$sessionid && isset($_COOKIE['registerDevice'])==$hashRegisteredDevice && !isset($queryparam['force'])) {
+    if (isset($_COOKIE['sess_id']) == $sessionid && isset($_COOKIE['registerDevice']) == $hashRegisteredDevice && !isset($queryparam['force'])) {
         header("Location: $url");
     } else {  // else generate session and cookies
         $registerDevice[sha512($rdk)]['datetime'] = date('Y-m-d H:i:s');
@@ -135,8 +136,7 @@ if (isset($queryparam['id'])) {
 }
 
 
-function getErrorHTML($error)
-{
+function getErrorHTML($error) {
     $html  = '';
     $html .= '<br><br><br><center>';
     $html .= '<img src="../../../../core/img/logo-jeedom-grand-nom-couleur.svg" width="200"><br><br><br><br>';
@@ -150,8 +150,7 @@ function getErrorHTML($error)
     return $html;
 }
 
-function getHTML()
-{
+function getHTML() {
     $html  = '';
     $html .= '<br><br><br><center>';
     $html .= '<img src="../../../../core/img/logo-jeedom-grand-nom-couleur.svg" width="200"><br><br><br><br>';

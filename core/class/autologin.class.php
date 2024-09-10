@@ -22,71 +22,48 @@
 //error_reporting(E_ALL);
 //ini_set('display_errors', 'On');
 class autologin extends eqLogic {
-	/*     * *************************Attributs****************************** */
+    public function preInsert() {
+        $this->setCategory('security', 1);
+        $this->setConfiguration('redirecturl', 'index.php');
+        $this->setConfiguration('ip', getClientIp());
+        $this->setConfiguration('sessionid', uniqid());
 
-	/*     * ***********************Methode static*************************** */
+        $this->setIsEnable(1);
+    }
 
+    public function preUpdate() {
 
-	/*     * *********************Methode d'instance************************* */
-
-	public function preUpdate() {
-
-        if ( $this->getConfiguration('redirecturl', '') == '' ) {
+        if ($this->getConfiguration('redirecturl', '') == '') {
             $this->setConfiguration('redirecturl', 'index.php');
-        }
-        else {
+        } else {
             $urlparts = parse_url($this->getConfiguration('redirecturl'));
-            $cleanurl = (substr($urlparts[path],0,1)=='/' ? substr($urlparts[path],1) : $urlparts[path]) . ($urlparts[query] ? '?'.$urlparts[query] : '');
+            $cleanurl = (substr($urlparts['path'], 0, 1) == '/' ? substr($urlparts['path'], 1) : $urlparts['path']) . ($urlparts['query'] ? '?' . $urlparts['query'] : '');
             $cleanurl = str_replace('//', '/', $cleanurl);
-            $this->setConfiguration('redirecturl', $cleanurl );
+            $this->setConfiguration('redirecturl', $cleanurl);
         }
-        if ( !filter_var('http://127.0.0.1/'.$this->getConfiguration('redirecturl', ''), FILTER_VALIDATE_URL) ) {
+        if (!filter_var('http://127.0.0.1/' . $this->getConfiguration('redirecturl', ''), FILTER_VALIDATE_URL)) {
             throw new Exception(__('Le champs Redirect URL n\'est pas au bon format.', __FILE__));
         }
-        if ( $this->getConfiguration('ip', '') == '' ) {
+        if ($this->getConfiguration('ip', '') == '') {
             throw new Exception(__('Le champs IP ne peut etre vide.', __FILE__));
         }
-        if ( !filter_var($this->getConfiguration('ip', ''), FILTER_VALIDATE_IP) ) {
+        if (!filter_var($this->getConfiguration('ip', ''), FILTER_VALIDATE_IP)) {
             throw new Exception(__('Le champs IP n\'est pas au bon format.', __FILE__));
         }
-        if ( $this->getConfiguration('user', '') == '' ) {
+        if ($this->getConfiguration('user', '') == '') {
             throw new Exception(__('Le champs Utilisateur ne peut etre vide.', __FILE__));
         }
 
-        if ($this->getLogicalId()=='') {
-            $this->setLogicalId($this->getId());
-            $this->setConfiguration('sessionid',uniqid());
-        }
-        // necessary to show url in config UI
-        $this->setConfiguration('urlid',$this->getLogicalId());
-
-        if ($this->getIsEnable()==0) {
+        if ($this->getIsEnable() == 0) {
             $this->deleteHash();
-        }
-        else {
+        } else {
             $this->saveHash();
         }
-	}
+    }
 
-	public function preRemove() {
+    public function preRemove() {
         $this->deleteHash();
-	}
-
-	public function preSave() {
-        // first time only
-        if ($this->getLogicalId()=='') {
-    		if ( $this->getConfiguration('redirecturl', '') == '' ) {
-                $this->setConfiguration('redirecturl', 'index.php');
-            }
-            if ( $this->getConfiguration('ip', '') == '' ) {
-                $this->setConfiguration('ip', getClientIp());
-            }
-            $this->setIsEnable(1);
-        }
-	}
-
-	public function postSave() {
-	}
+    }
 
     public function saveHash() {
         $user = $this->getUser();
@@ -105,9 +82,9 @@ class autologin extends eqLogic {
             $rdk = config::genKey();
             $hashregisterdevice = $user->getHash() . '-' . $rdk;
             $registerDevice[sha512($rdk)] = array();
-        	$registerDevice[sha512($rdk)]['datetime'] = date('Y-m-d H:i:s');
-        	$registerDevice[sha512($rdk)]['ip'] = $this->getIP();
-        	$registerDevice[sha512($rdk)]['session_id'] = $this->getSessionId();
+            $registerDevice[sha512($rdk)]['datetime'] = date('Y-m-d H:i:s');
+            $registerDevice[sha512($rdk)]['ip'] = $this->getIP();
+            $registerDevice[sha512($rdk)]['session_id'] = $this->getSessionId();
             $user->setOptions('registerDevice', $registerDevice);
             $user->save();
 
@@ -161,21 +138,11 @@ class autologin extends eqLogic {
     public function getIP() {
         return $this->getConfiguration('ip', '');
     }
-
-    // ------------------------------
-
 }
 
 class autologinCmd extends cmd {
-	/*     * *************************Attributs****************************** */
 
-	/*     * ***********************Methode static*************************** */
-
-	/*     * *********************Methode d'instance************************* */
-
-	public function execute($_options = null) {
-        return true;
-	}
-
-	/*     * **********************Getteur Setteur*************************** */
+    public function execute($_options = null) {
+        return;
+    }
 }
