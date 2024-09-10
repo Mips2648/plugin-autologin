@@ -14,7 +14,6 @@
         "Activer": "Enable",
         "Visible": "Visible",
         "IP Autorisée": "Allowed IP",
-        "eg: 192.168.X.Y": "eg: 192.168.X.Y",
         "Utilisateur": "User",
         "Selectionner un utilisateur (non admin)": "Select a non-admin user",
         "Page Jeedom": "Jeedom page",
@@ -23,7 +22,6 @@
         "Accès externe": "External access"
     },
     "plugins\/autologin\/core\/php\/go.php": {
-        "Authentification en cours...": "Loading...",
-        "Connexion de l\'utilisateur ": "Connecting user "
+        "Authentification en cours...": "Loading..."
     }
 }

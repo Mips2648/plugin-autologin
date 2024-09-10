@@ -3,10 +3,10 @@ name: checkPHP
 on:
   push:
     branches:
-      - beta
+      - develop
   pull_request:
     branches:
-      - beta
+      - develop
 
 jobs:
   build:
