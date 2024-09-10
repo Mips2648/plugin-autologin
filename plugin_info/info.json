@@ -10,26 +10,18 @@
 		"pt_PT": "Início de sessão automático do utilizador com base no IP"
 	},
 	"licence": "AGPL",
-	"author": "guirem",
+	"author": "Mips",
 	"hasOwnDeamon": false,
 	"hasDependency": false,
-	"maxDependancyInstallTime": 0,
-	"version": "1.2",
-	"require": "3.0",
+	"require": "4.4",
 	"category": "programming",
-	"changelog": "https://github.com/guirem/plugin-autologin/blob/develop/docs/fr_FR/changelog.md",
-	"documentation": "https://github.com/guirem/plugin-autologin/blob/develop/docs/fr_FR/index.md",
-	"forum_link": "https://www.jeedom.com/forum/viewtopic.php?f=135&t=37564",
+	"changelog": "https://github.com/Mips2648/plugin-autologin/blob/develop/docs/#language#/changelog.md",
+	"documentation": "https://github.com/Mips2648/plugin-autologin/blob/develop/docs/#language#/index.md",
 	"link": {
-		"forum": "https://www.jeedom.com/forum/viewtopic.php?f=135&t=37564",
+		"forum": "https://community.jeedom.com/tag/plugin-autologin",
 		"video": ""
 	},
-	"languages": [
-		"fr_FR",
-		"en_US"
-	],
 	"compatibility": [
-		"miniplus",
 		"smart",
 		"rpi",
 		"docker",
@@ -43,5 +35,8 @@
 		"fr_FR",
 		"it_IT",
 		"pt_PT"
-	]
+	],
+	"os": {
+		"min": 11
+	}
 }
