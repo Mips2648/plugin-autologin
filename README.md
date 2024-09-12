@@ -17,5 +17,7 @@ Plugin [user documentation (fr)](docs/fr_FR/index.md).
 
   - logical id: `autologin`
   - user: `Mips2648`
-  - repo: `jeedom-autologin`
+  - repo: `plugin-autologin`
   - branch: `master`
+
+![add github](docs/images/add_github.png)
