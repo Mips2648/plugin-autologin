@@ -37,7 +37,7 @@ class autologin extends eqLogic {
             $this->setConfiguration('redirecturl', 'index.php');
         } else {
             $urlparts = parse_url($this->getConfiguration('redirecturl'));
-            $cleanurl = (substr($urlparts['path'], 0, 1) == '/' ? substr($urlparts['path'], 1) : $urlparts['path']) . ($urlparts['query'] ? '?' . $urlparts['query'] : '');
+            $cleanurl = trim($urlparts['path'], '/ \n\r\t\v\0') . (isset($urlparts['query']) ? '?' . $urlparts['query'] : '');
             $cleanurl = str_replace('//', '/', $cleanurl);
             $this->setConfiguration('redirecturl', $cleanurl);
         }
