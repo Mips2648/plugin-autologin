@@ -6,3 +6,9 @@ document.querySelectorAll('div.autologin a.maskToggle').forEach(function (elemen
     this.querySelector('i').classList.toggle('fa-eye-slash')
   });
 });
+
+function printEqLogic(_eqLogic) {
+  document.querySelectorAll('div.autologin span.eqLogic_id').forEach(function (element) {
+    element.innerHTML = _eqLogic.id;
+  });
+}

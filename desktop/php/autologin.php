@@ -164,12 +164,12 @@ function sortByOption($a, $b) {
                 <label class="col-sm-2 control-label">{{Accès interne}}</label>
                 <div class="alert alert-info col-sm-10 autologin">
                   <a class="btn btn-default btn-xs maskToggle pull-right"><i class="fas fa-eye"></i></a>
-                  <?php echo '<span class="mask masked">' . network::getNetworkAccess('internal') . '</span>/plugins/autologin/core/php/go.php?apikey=<span class="mask masked">' . jeedom::getApiKey('autologin') . '</span>&id=<span class="eqLogicAttr" data-l1key="id"/>'; ?></span>
+                  <?php echo '<span class="mask masked">' . network::getNetworkAccess('internal') . '</span>/plugins/autologin/core/php/go.php?apikey=<span class="mask masked">' . jeedom::getApiKey('autologin') . '</span>&id=<span class="eqLogic_id"/>'; ?></span>
                 </div>
                 <label class="col-sm-2 control-label">{{Accès externe}}</label>
                 <div class="alert alert-info col-sm-10 autologin">
                   <a class="btn btn-default btn-xs maskToggle pull-right"><i class="fas fa-eye"></i></a>
-                  <?php echo '<span class="mask masked">' . network::getNetworkAccess('external') . '</span>/plugins/autologin/core/php/go.php?apikey=<span class="mask masked">' . jeedom::getApiKey('autologin') . '</span>&id=<span class="eqLogicAttr" data-l1key="id"/>'; ?></span>
+                  <?php echo '<span class="mask masked">' . network::getNetworkAccess('external') . '</span>/plugins/autologin/core/php/go.php?apikey=<span class="mask masked">' . jeedom::getApiKey('autologin') . '</span>&id=<span class="eqLogic_id"/>'; ?></span>
                 </div>
               </div>
             </div>
