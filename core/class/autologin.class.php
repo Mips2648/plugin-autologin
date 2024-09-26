@@ -19,8 +19,8 @@
 /* * ***************************Includes********************************* */
 
 
-//error_reporting(E_ALL);
-//ini_set('display_errors', 'On');
+require_once __DIR__ . '/../../../../core/php/core.inc.php';
+
 class autologin extends eqLogic {
     public function preInsert() {
         $this->setCategory('security', 1);
